@@ -7,8 +7,8 @@ function preload() {
 }
 
 function setup() {
-    if(windowWidth >= windowHeight - 160) createCanvas(windowWidth, windowHeight);
-    else createCanvas(windowWidth, windowWidth+80);
+    if (windowWidth >= windowHeight - 160) createCanvas(windowWidth, windowHeight);
+    else createCanvas(windowWidth, windowWidth + 80);
 
     textFont("monospace");
     textAlign(LEFT, CENTER);
@@ -16,8 +16,7 @@ function setup() {
 
     // frameRate(120);//Letras por segundos
     background(112, 193, 179);
-    fita = new Fita("-123.152");
-    //zebras caolhas de Java querem mandar fax para moça gigante de new york
+    fita = new Fita("110");
     aut = new Autonomo(arquivo);
 }
 

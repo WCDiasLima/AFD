@@ -17,12 +17,10 @@ class Fita {
     line(width / 2 + larg / 2 - 3, height -100, width / 2 + larg / 2 - 3, height);
   }
   passo() {
-    if (this.atual < this.cadeia.length) {
-      this.atual ++;
-    }
-    else noLoop();
+    this.atual ++;
   }
   letra() {
+    if(this.atual === this.cadeia.length) return -1234;//Código para cadeia terminada
     return this.cadeia.charAt(this.atual);
   }
 }
