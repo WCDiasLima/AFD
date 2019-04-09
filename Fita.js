@@ -1,3 +1,8 @@
+/*
+Copyright 2019 Joyce Emanuele, Wellington Cesar
+This file is part of AFD.
+*/
+
 var larg = 30;
 
 class Fita {

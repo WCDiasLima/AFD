@@ -1,3 +1,8 @@
+/*
+Copyright 2019 Joyce Emanuele, Wellington Cesar
+This file is part of AFD.
+*/
+
 class Autonomo {
   constructor(arq) {
     this.alfabeto = arq.alfabeto;
