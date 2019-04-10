@@ -3,13 +3,18 @@ Copyright 2019 Joyce Emanuele, Wellington Cesar
 This file is part of AFD.
 */
 
-var larg = 30;
+let larg = 30;
 
 class Fita {
   constructor(c) {
     this.cadeia = c;
     this.atual = 0;
   }
+  reiniciar(c) {
+  	if(c) this.cadeia = c;
+  	this.atual = 0;
+  }
+
   mostrar() {
     noStroke();
     fill(36, 123, 160);
@@ -23,9 +28,12 @@ class Fita {
   }
   passo() {
     this.atual ++;
+    if(this.atual === this.cadeia.length) {
+    	rodando = false;
+    	aut.termino(true);
+    }
   }
   letra() {
-    if(this.atual === this.cadeia.length) return -1234;//Código para cadeia terminada
     return this.cadeia.charAt(this.atual);
   }
 }

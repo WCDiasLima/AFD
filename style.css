@@ -5,3 +5,13 @@ html, body {
 canvas {
   display: block;
 }
+.dois {
+  position:absolute;
+  left: 202px;
+  width: 98px;
+}
+.tres {
+  position:absolute;
+  display: inline-block;
+  left: 300px;
+}

@@ -17,9 +17,8 @@ You should have received a copy of the GNU General Public License
 along with AFD. If not, see <https://www.gnu.org/licenses/>.
 */
 
-let fita;
-let aut;
-let arquivo;
+let fita, aut, arquivo, botao, caixa, entrada;
+let rodando = false;
 
 function preload() {
     //Arquivo de autômato disponível para edição em https://www.npoint.io/docs/47de07a0bd5255cdcf78
@@ -27,8 +26,8 @@ function preload() {
 }
 
 function setup() {
-    if (windowWidth >= windowHeight - 160) createCanvas(windowWidth, windowHeight);
-    else createCanvas(windowWidth, windowWidth + 80);
+	createCanvas(windowWidth, windowHeight-25)
+		.mousePressed(passoManual);
 
     textFont("monospace");
     textAlign(LEFT, CENTER);
@@ -36,18 +35,36 @@ function setup() {
 
     // frameRate(120);//Letras por segundos
     background(112, 193, 179);
-    fita = new Fita("110");
+    fita = new Fita("Cadeia...");
     aut = new Autonomo(arquivo);
+
+    botao = createButton("Iniciar")
+	    .mousePressed(iniciar)
+	    .class("dois");
+	entrada = createInput()
+		.class("um");
+	caixa = createCheckbox("Leitura automática")
+		.class("tres");
 }
 
 function draw() {
     fita.mostrar();
     aut.mostrar();
-    // aut.passo(fita.letra());
-    // fita.passo();
+    if(rodando && caixa.checked()) {
+	    aut.passo(fita.letra());
+	    fita.passo();
+    }
 }
 
-function mousePressed() {
-    aut.passo(fita.letra());
-    fita.passo();
+function iniciar() {
+	aut.reiniciar();
+	fita.reiniciar(entrada.value());
+	rodando = true;
+}
+
+function passoManual() {
+	if(rodando && !caixa.checked()) {
+		aut.passo(fita.letra());
+		fita.passo();
+	}
 }

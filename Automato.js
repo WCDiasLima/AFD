@@ -7,20 +7,15 @@ class Autonomo {
   constructor(arq) {
     this.alfabeto = arq.alfabeto;
     this.qtdEstados = arq.qtdEstados;
-    this.estadoAtual = arq.estadoInicial;
+    this.estadoInicial = arq.estadoInicial;
+    this.estadoAtual = this.estadoInicial;
     this.estadosFinais = new Set(arq.estadosFinais);
     this.delta = arq.delta;
   }
+  reiniciar() {this.estadoAtual = this.estadoInicial;}
 
   passo(letra) {
-    if(letra === -1234) {
-      if(this.estadosFinais.has(this.estadoAtual)) alert("Em estado final");
-      else alert("Não estado final ");
-      noLoop();
-      return;
-    }
-    let pos = this.posAlfa(letra);
-    this.estadoAtual = this.delta[this.estadoAtual][pos];
+    this.estadoAtual = this.delta[this.estadoAtual][this.posAlfa(letra)];
   }
   posAlfa(letra) {
     for (let i = 0; i < this.alfabeto.length; i++) {
@@ -40,6 +35,13 @@ class Autonomo {
       circle(x, y, 25);
       fill(0);
       text(i, x - 15, y + 2);
+    }
+  }
+  termino(fimcadeia) {
+  	window.navigator.vibrate(500);
+  	if(fimcadeia) {
+  		if(this.estadosFinais.has(this.estadoAtual)) alert("Aceito!");
+  		else alert("Rejeitado!!");
     }
   }
 }
