@@ -83,6 +83,7 @@ class Autonomo {
 		}
 	}
 ligacoes() {
+    let x, y;
     let coor = [];
     let alf =[];
     let i,j;
