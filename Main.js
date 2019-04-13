@@ -17,8 +17,10 @@ You should have received a copy of the GNU General Public License
 along with AFD. If not, see <https://www.gnu.org/licenses/>.
 */
 
-let fita, aut, arquivo, botao, caixa, entrada;
-let rodando = false;
+let fita, aut, arquivo, som;
+let botao, caixa, entrada;
+let aceito = false;
+let estado = 'p'; //(p)arado, (r)odando e (t)erminado
 
 function preload() {
     //Arquivo de autômato disponível para edição em https://www.npoint.io/docs/47de07a0bd5255cdcf78
@@ -29,20 +31,21 @@ function setup() {
 	createCanvas(windowWidth, windowHeight-25)
 		.mousePressed(passoManual);
 
-    textFont("monospace");
+    textFont("Roboto Mono");
     textAlign(LEFT, CENTER);
     textSize(50);
 
     // frameRate(120);//Letras por segundos
     background(112, 193, 179);
-    fita = new Fita("Cadeia...");
+    fita = new Fita("Não iniciado");
     aut = new Autonomo(arquivo);
+	som = new p5.Oscillator();
 
-    botao = createButton("Iniciar")
-	    .mousePressed(iniciar)
-	    .class("dois");
 	entrada = createInput()
 		.class("um");
+	botao = createButton("Iniciar")
+	    .mousePressed(iniciar)
+	    .class("dois");
 	caixa = createCheckbox("Leitura automática")
 		.class("tres");
 }
@@ -51,7 +54,7 @@ function draw() {
     aut.ligacoes();
     fita.mostrar();
     aut.mostrar();
-    if(rodando && caixa.checked()) {
+    if(estado === 'r' && caixa.checked()) {
 	    aut.passo(fita.letra());
 	    fita.passo();
     }
@@ -60,11 +63,12 @@ function draw() {
 function iniciar() {
 	aut.reiniciar();
 	fita.reiniciar(entrada.value());
-	rodando = true;
+	background(112, 193, 179);
+	estado = 'r';
 }
 
 function passoManual() {
-	if(rodando && !caixa.checked()) {
+	if(estado === 'r' && !caixa.checked()) {
 		aut.passo(fita.letra());
 		fita.passo();
 	}
