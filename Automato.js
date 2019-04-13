@@ -95,17 +95,43 @@ class Autonomo {
           push();
           
           if(coor[i][k+1]<height/2){
-           triangle(coor[i][k], coor[i][k+1]-25, coor[i][k]+10, coor[i][k+1]-35, coor[i][k]-10, coor[i][k+1]-35);
-           PointM = createVector(((coor[i][k]+10)+(coor[i][k]-10))/2+15,((coor[i][k+1]-35)+(coor[i][k+1]-35))/2); 
+           if(this.estadosFinais.has(i)){//se o estado pertence ao estado final
+	      triangle(coor[i][k], coor[i][k+1]-35, coor[i][k]+20, coor[i][k+1]-45, coor[i][k]-20, coor[i][k+1]-45);
+	      PointM = createVector(((coor[i][k]+20)+(coor[i][k]-20))/2,((coor[i][k+1]-45)+(coor[i][k+1]-45))/2);
+	   }
+           else{
+             triangle(coor[i][k], coor[i][k+1]-25, coor[i][k]+10, coor[i][k+1]-35, coor[i][k]-10, coor[i][k+1]-35); 
+	     PointM = createVector(((coor[i][k]+10)+(coor[i][k]-10))/2,((coor[i][k+1]-35)+(coor[i][k+1]-35))/2);//foi tirado o +15 da co x
+	   }
+           
+	 
+          push();
+          textSize(20);
+          if(coor[i][k]<width/2)
+            text(alf[i][this.delta[i][j]],PointM.x-15,PointM.y+10);
+          else
+	    text(alf[i][this.delta[i][j]],PointM.x+15,PointM.y+10);  
+          pop(); 
+          /////
           }  
           else{
-           triangle(coor[i][k], coor[i][k+1]+25, coor[i][k]+10, coor[i][k+1]+35, coor[i][k]-10, coor[i][k+1]+35);
-           PointM = createVector(((coor[i][k]+10)+(coor[i][k]-10))/2,((coor[i][k+1]+35)+(coor[i][k+1]+35))/2);
+	    if(this.estadosFinais.has(i)){
+	       triangle(coor[i][k], coor[i][k+1]+35, coor[i][k]+20, coor[i][k+1]+45, coor[i][k]-20, coor[i][k+1]+45);
+	       PointM = createVector(((coor[i][k]+20)+(coor[i][k]-20))/2,((coor[i][k+1]+45)+(coor[i][k+1]+45))/2);
+	    }
+	    else{
+              triangle(coor[i][k], coor[i][k+1]+25, coor[i][k]+10, coor[i][k+1]+35, coor[i][k]-10, coor[i][k+1]+35);
+	       PointM = createVector(((coor[i][k]+10)+(coor[i][k]-10))/2,((coor[i][k+1]+35)+(coor[i][k+1]+35))/2);
+	    }
+          
           }  
           
           push();
           textSize(20);
-          text(alf[i][this.delta[i][j]],PointM.x,PointM.y+10);
+          if(coor[i][k]<width/2)
+           text(alf[i][this.delta[i][j]],PointM.x+15,PointM.y+10);
+	  else 
+	   text(alf[i][this.delta[i][j]],PointM.x-15,PointM.y+10);  
           pop(); 
           pop();
         }
