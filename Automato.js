@@ -90,17 +90,49 @@ ligacoes(){
     for(i=0;i<this.qtdEstados;i++){
       for(j=0;j<this.alfabeto.length;j++){
         line(coor[i][k],coor[i][k+1],coor[this.delta[i][j]][k],coor[this.delta[i][j]][k+1])
+
+		  if(i===this.estadoInicial) {///estado inicial
+			  push();
+			  line(coor[i][k],coor[i][k+1],coor[i][k],coor[i][k+1]+60);
+			  fill(color(100, 100, 100));
+			  triangle(coor[i][k],coor[i][k+1]+30,coor[i][k]+10,coor[i][k+1]+50,coor[i][k]-10,coor[i][k+1]+50);
+			  pop();
+		  }
+
         if(i===this.delta[i][j]){
           let PointM;
-          push();
 
+          push();
           if(coor[i][k+1]<height/2){
-           triangle(coor[i][k], coor[i][k+1]-25, coor[i][k]+10, coor[i][k+1]-35, coor[i][k]-10, coor[i][k+1]-35);
-           PointM = createVector(((coor[i][k]+10)+(coor[i][k]-10))/2+15,((coor[i][k+1]-35)+(coor[i][k+1]-35))/2); 
+			  if(this.estadosFinais.has(i)){
+				  triangle(coor[i][k], coor[i][k+1]-35, coor[i][k]+10, coor[i][k+1]-45, coor[i][k]-10, coor[i][k+1]-45);
+				  if(coor[i][k]<width/2){
+					  PointM = createVector(((coor[i][k]+10)+(coor[i][k]-10))/2-35,((coor[i][k+1]-45)+(coor[i][k+1]-45))/2-15);
+				  }
+				  else {
+					  PointM = createVector(((coor[i][k] + 10) + (coor[i][k] - 10)) / 2 + 35, ((coor[i][k + 1] - 45) + (coor[i][k + 1] - 45)) / 2-15);
+				  }
+			  }
+			  else {
+				  triangle(coor[i][k], coor[i][k + 1] - 25, coor[i][k] + 10, coor[i][k + 1] - 35, coor[i][k] - 10, coor[i][k + 1] - 35);
+				  PointM = createVector(((coor[i][k] + 10) + (coor[i][k] - 10)) / 2 + 15, ((coor[i][k + 1] - 35) + (coor[i][k + 1] - 35)) / 2);
+			  }
           }  
           else{
-           triangle(coor[i][k], coor[i][k+1]+25, coor[i][k]+10, coor[i][k+1]+35, coor[i][k]-10, coor[i][k+1]+35);
-           PointM = createVector(((coor[i][k]+10)+(coor[i][k]-10))/2,((coor[i][k+1]+35)+(coor[i][k+1]+35))/2);
+			  if(this.estadosFinais.has(i)){
+				  triangle(coor[i][k], coor[i][k+1]+35, coor[i][k]+10, coor[i][k+1]+45, coor[i][k]-10, coor[i][k+1]+45);
+				  if(coor[i][k]<width/2){
+					  PointM = createVector(((coor[i][k]+10)+(coor[i][k]-10))/2-35,((coor[i][k+1]+45)+(coor[i][k+1]+45))/2+15);
+				  }
+				  else{
+					  PointM = createVector(((coor[i][k]+10)+(coor[i][k]-10))/2+35,((coor[i][k+1]+45)+(coor[i][k+1]+45))/2+15);
+				  }
+			  }
+			  else{
+				  triangle(coor[i][k], coor[i][k+1]+25, coor[i][k]+10, coor[i][k+1]+35, coor[i][k]-10, coor[i][k+1]+35);
+				  PointM = createVector(((coor[i][k]+10)+(coor[i][k]-10))/2,((coor[i][k+1]+35)+(coor[i][k+1]+35))/2);
+			  }
+
           }  
 
           push();
