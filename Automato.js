@@ -86,6 +86,7 @@ ligacoes() {
     let coor = [];
     let alf =[];
     let i,j;
+    stroke(0);
 
     for(i=0;i<this.qtdEstados;i++){
        alf[i]=[];
