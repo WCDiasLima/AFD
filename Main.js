@@ -48,6 +48,7 @@ function setup() {
 }
 
 function draw() {
+    aut.ligacoes();
     fita.mostrar();
     aut.mostrar();
     if(rodando && caixa.checked()) {
