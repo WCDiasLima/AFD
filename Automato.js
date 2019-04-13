@@ -65,18 +65,18 @@ class Autonomo {
 		}
 		estado = 't';
 	}
-  ligacoes(){
+ligacoes(){
     let raio = height / 2 - 80, x, y;
     let coor = [];
     let alf =[];
     let i,j;
- 
+
     for(i=0;i<this.qtdEstados;i++){
        alf[i]=[];
       for (j=0;j<this.qtdEstados;j++){
         alf[i][j]=[];
     }}
-    
+
     for(i = 0; i < this.qtdEstados; i++) {
       x = raio * cos(map(i, 0, this.qtdEstados, 0, TAU)) + width / 2;
       y = raio * sin(map(i, 0, this.qtdEstados, 0, TAU)) + height / 2 - 50;
@@ -86,51 +86,26 @@ class Autonomo {
       for (j=0;j<this.alfabeto.length;j++){
         alf[i][this.delta[i][j]][alf[i][this.delta[i][j]].length] = this.alfabeto[j];
     } }
-  
+
     for(i=0;i<this.qtdEstados;i++){
       for(j=0;j<this.alfabeto.length;j++){
         line(coor[i][k],coor[i][k+1],coor[this.delta[i][j]][k],coor[this.delta[i][j]][k+1])
         if(i===this.delta[i][j]){
           let PointM;
           push();
-          
+
           if(coor[i][k+1]<height/2){
-           if(this.estadosFinais.has(i)){//se o estado pertence ao estado final
-	      triangle(coor[i][k], coor[i][k+1]-35, coor[i][k]+10, coor[i][k+1]-45, coor[i][k]-10, coor[i][k+1]-45);
-	      PointM = createVector(((coor[i][k]+10)+(coor[i][k]-10))/2,((coor[i][k+1]-45)+(coor[i][k+1]-45))/2);
-	   }
-           else{
-             triangle(coor[i][k], coor[i][k+1]-25, coor[i][k]+10, coor[i][k+1]-35, coor[i][k]-10, coor[i][k+1]-35); 
-	     PointM = createVector(((coor[i][k]+10)+(coor[i][k]-10))/2,((coor[i][k+1]-35)+(coor[i][k+1]-35))/2);//foi tirado o +15 da co x
-	   }
-	 
-          push();
-          textSize(20);
-          if(coor[i][k]<width/2)
-            text(alf[i][this.delta[i][j]],PointM.x-15,PointM.y-10);
-          else
-	    text(alf[i][this.delta[i][j]],PointM.x+15,PointM.y-10);  
-          pop(); 
-          /////
+           triangle(coor[i][k], coor[i][k+1]-25, coor[i][k]+10, coor[i][k+1]-35, coor[i][k]-10, coor[i][k+1]-35);
+           PointM = createVector(((coor[i][k]+10)+(coor[i][k]-10))/2+15,((coor[i][k+1]-35)+(coor[i][k+1]-35))/2); 
           }  
           else{
-	    if(this.estadosFinais.has(i)){
-	       triangle(coor[i][k], coor[i][k+1]+35, coor[i][k]+10, coor[i][k+1]+45, coor[i][k]-10, coor[i][k+1]+45);
-	       PointM = createVector(((coor[i][k]+20)+(coor[i][k]-20))/2,((coor[i][k+1]+45)+(coor[i][k+1]+45))/2);
-	    }
-	    else{
-              triangle(coor[i][k], coor[i][k+1]+25, coor[i][k]+10, coor[i][k+1]+35, coor[i][k]-10, coor[i][k+1]+35);
-	       PointM = createVector(((coor[i][k]+10)+(coor[i][k]-10))/2,((coor[i][k+1]+35)+(coor[i][k+1]+35))/2);
-	    }
-          
+           triangle(coor[i][k], coor[i][k+1]+25, coor[i][k]+10, coor[i][k+1]+35, coor[i][k]-10, coor[i][k+1]+35);
+           PointM = createVector(((coor[i][k]+10)+(coor[i][k]-10))/2,((coor[i][k+1]+35)+(coor[i][k+1]+35))/2);
           }  
-          
+
           push();
           textSize(20);
-          if(coor[i][k]<width/2)
-           text(alf[i][this.delta[i][j]],PointM.x-15,PointM.y+10);
-	  else 
-	   text(alf[i][this.delta[i][j]],PointM.x+15,PointM.y+10);  
+          text(alf[i][this.delta[i][j]],PointM.x,PointM.y+10);
           pop(); 
           pop();
         }
@@ -142,7 +117,7 @@ class Autonomo {
         rotate(angulo-HALF_PI);
         triangle(-10*0.5, 10, 10*0.5, 10, 0, -10/2);  
         pop();
-          
+
         push();
         textSize(20);
         text(alf[i][this.delta[i][j]],(pM.x+coor[this.delta[i][j]][k])/2,(pM.y+coor[this.delta[i][j]][k+1])/2+20);
