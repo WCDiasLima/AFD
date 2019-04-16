@@ -1,25 +1,24 @@
 /*
-Copyright 2019 Joyce Emanuele, Wellington Cesar
+ Copyright 2019 Joyce Emanuele, Wellington Cesar
 
-This file is part of AFD.
+ This file is part of AFD.
 
-AFD is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+ AFD is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
 
-AFD is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+ AFD is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with AFD. If not, see <https://www.gnu.org/licenses/>.
-*/
+ You should have received a copy of the GNU General Public License
+ along with AFD. If not, see <https://www.gnu.org/licenses/>.
+ */
 
 let fita, aut, arquivo, som;
 let botao, caixa, entrada;
-let aceito = false;
 let estado = 'p'; //(p)arado, (e)xecutando, (a)ceito, (r)ejeitado e (s)ímbolo desconhecido
 
 function preload() {
@@ -66,7 +65,7 @@ function iniciar() {
 }
 
 function passoManual() {
-	if (estado === 'e' && !caixa.checked()) {
+	if(estado === 'e' && !caixa.checked()) {
 		aut.passo(fita.letra());
 		fita.passo();
 	}

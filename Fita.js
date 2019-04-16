@@ -1,7 +1,7 @@
 /*
-Copyright 2019 Joyce Emanuele, Wellington Cesar
-This file is part of AFD.
-*/
+ Copyright 2019 Joyce Emanuele, Wellington Cesar
+ This file is part of AFD.
+ */
 
 let larg = 30.005;
 
@@ -10,6 +10,7 @@ class Fita {
 		this.cadeia = c;
 		this.atual = 0;
 	}
+
 	reiniciar(c) {
 		this.cadeia = c;
 		this.atual = 0;
@@ -23,15 +24,16 @@ class Fita {
 		text(this.cadeia, width / 2 - larg * this.atual - larg * 0.59, height - 50);
 		strokeWeight(3);
 		stroke(255, 22, 84);
-		line(width / 2 - larg / 2 - 3, height -100, width / 2 - larg / 2 - 3, height);
-		line(width / 2 + larg / 2 - 3, height -100, width / 2 + larg / 2 - 3, height);
+		line(width / 2 - larg / 2 - 3, height - 100, width / 2 - larg / 2 - 3, height);
+		line(width / 2 + larg / 2 - 3, height - 100, width / 2 + larg / 2 - 3, height);
+
+		if(this.atual === this.cadeia.length) aut.termino(true);
 	}
+
 	passo() {
-		this.atual ++;
-		if(this.atual === this.cadeia.length) {
-			aut.termino(true);
-		}
+		this.atual++;
 	}
+
 	letra() {
 		return this.cadeia.charAt(this.atual);
 	}
